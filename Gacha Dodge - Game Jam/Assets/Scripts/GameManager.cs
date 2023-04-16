@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public int currentPoints;
     public int spawnRate;
+    public bool isPlaying;
 
     private float timer;
 
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isPlaying = true;
         currentPoints = 0;
         spawnRate = 80;
         ps = FindObjectOfType<PlayerStatus>();
@@ -41,6 +43,15 @@ public class GameManager : MonoBehaviour
         else if(currentPoints == 120)
         {
             spawnRate = 30;
+        }
+
+        if (isPlaying)
+        {
+            Time.timeScale = 1;
+        }
+        else
+        {
+            Time.timeScale = 0;
         }
     }
 }

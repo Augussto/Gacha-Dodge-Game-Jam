@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
@@ -26,11 +27,13 @@ public class UIController : MonoBehaviour
     public void DefeatScreen()
     {
         backToMenuBtn.SetActive(true);
-        Time.timeScale = 0;
+        gm.isPlaying = false;
     }
 
     public void BackToMenu()
     {
-
+        gm.isPlaying = true;
+        Debug.Log("Time Scale: " + Time.timeScale);
+        SceneManager.LoadScene("MainMenu");
     }
 }

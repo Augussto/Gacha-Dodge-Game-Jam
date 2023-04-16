@@ -24,10 +24,13 @@ public class SpawnGachas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        randNum = Random.Range(0, gm.spawnRate);
-        if(randNum == numberToSpawn)
+        if (gm.isPlaying)
         {
-            SpawnGacha();
+            randNum = Random.Range(0, gm.spawnRate);
+            if (randNum == numberToSpawn)
+            {
+                SpawnGacha();
+            }
         }
     }
 

@@ -23,5 +23,14 @@ public class PlayerStatus : MonoBehaviour
             Debug.Log("Current Life: " + currentLife);
             uic.lifes[currentLife].SetActive(false);
         }
+        else if(collision.tag == "Life")
+        {
+            if(currentLife == 2 || currentLife == 1)
+            {
+                uic.lifes[currentLife].SetActive(true);
+                currentLife += 1;
+                Debug.Log("Current Life: " + currentLife);
+            }
+        }
     }
 }

@@ -52,9 +52,9 @@ public class PlayerStatus : MonoBehaviour
 
     IEnumerator ActivatePowerUp()
     {
-        while (true)
+        while (gm.powerUp)
         {
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(5f);
             gm.powerUp = false;
             uic.ChangeBg(gm.powerUp);
             Debug.Log("END POWER UP");

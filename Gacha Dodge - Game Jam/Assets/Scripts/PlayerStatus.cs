@@ -6,10 +6,15 @@ public class PlayerStatus : MonoBehaviour
 {
     public int currentLife;
     private UIController uic;
+    private GameManager gm;
+
+    public AudioSource hitGacha;
+    public AudioSource hitLife;
     // Start is called before the first frame update
     void Start()
     {
         uic = FindObjectOfType<UIController>();
+        gm = FindObjectOfType<GameManager>();
         currentLife = 3;
         Debug.Log("Current Life: " + currentLife);
     }
@@ -20,8 +25,9 @@ public class PlayerStatus : MonoBehaviour
         if (collision.tag == "Gacha")
         {
             currentLife -= 1;
-            Debug.Log("Current Life: " + currentLife);
             uic.lifes[currentLife].SetActive(false);
+            Destroy(collision.gameObject);
+            hitGacha.Play();
         }
         else if(collision.tag == "Life")
         {
@@ -29,8 +35,29 @@ public class PlayerStatus : MonoBehaviour
             {
                 uic.lifes[currentLife].SetActive(true);
                 currentLife += 1;
-                Debug.Log("Current Life: " + currentLife);
+                Destroy(collision.gameObject);
+                hitLife.Play();
             }
+        }
+        else if(collision.tag == "Star" && gm.powerUp == false)
+        {
+            hitLife.Play();
+            Destroy(collision.gameObject);
+            gm.powerUp = true;
+            uic.ChangeBg(gm.powerUp);
+            Debug.Log("POWER UP");
+            StartCoroutine("ActivatePowerUp");
+        }
+    }
+
+    IEnumerator ActivatePowerUp()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(10f);
+            gm.powerUp = false;
+            uic.ChangeBg(gm.powerUp);
+            Debug.Log("END POWER UP");
         }
     }
 }

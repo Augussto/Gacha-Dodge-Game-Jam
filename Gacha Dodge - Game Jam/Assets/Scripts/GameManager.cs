@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public int currentPoints;
     public int spawnRate;
     public bool isPlaying;
+    public bool powerUp;
 
     private float timer;
 
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         isPlaying = true;
+        powerUp = false;
         currentPoints = 0;
         spawnRate = 80;
         ps = FindObjectOfType<PlayerStatus>();
@@ -29,8 +31,16 @@ public class GameManager : MonoBehaviour
         {
             uic.DefeatScreen();
         }
-        timer += Time.deltaTime;
-        currentPoints = (int) timer;
+        if (powerUp)
+        {
+            timer += Time.deltaTime * 1.5f;
+            currentPoints = (int)timer;
+        }
+        else
+        {
+            timer += Time.deltaTime;
+            currentPoints = (int)timer;
+        }
 
         if(currentPoints == 40)
         {

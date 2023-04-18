@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnGachas : MonoBehaviour
 {
-    public GameObject gacha;
+    public GameObject[] gacha;
 
     [SerializeField] private GameObject[] spawnPoints;
     private GameObject spawnPoint;
@@ -36,8 +36,9 @@ public class SpawnGachas : MonoBehaviour
 
     private void SpawnGacha()
     {
-        spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length - 1)];
-        Instantiate(gacha, spawnPoint.transform.position, Quaternion.identity);
+        randNum = Random.Range(0,gacha.Length);
+        spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Instantiate(gacha[randNum], spawnPoint.transform.position, Quaternion.identity);
     }
 
 }

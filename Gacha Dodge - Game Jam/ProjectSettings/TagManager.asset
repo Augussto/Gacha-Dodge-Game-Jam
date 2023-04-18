@@ -7,6 +7,7 @@ TagManager:
   - SpawnPoint
   - Gacha
   - Life
+  - Star
   layers:
   - Default
   - TransparentFX

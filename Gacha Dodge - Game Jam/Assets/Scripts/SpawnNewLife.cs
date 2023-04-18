@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnNewLife : MonoBehaviour
 {
-    public GameObject newLife;
+    public GameObject[] specialObject;
 
     [SerializeField] private GameObject[] spawnPoints;
     private GameObject spawnPoint;
@@ -36,7 +36,8 @@ public class SpawnNewLife : MonoBehaviour
 
     private void SpawnGacha()
     {
-        spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length - 1)];
-        Instantiate(newLife, spawnPoint.transform.position, Quaternion.identity);
+        randNum = Random.Range(0, specialObject.Length);
+        spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Instantiate(specialObject[randNum], spawnPoint.transform.position, Quaternion.identity);
     }
 }

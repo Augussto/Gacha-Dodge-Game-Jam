@@ -10,6 +10,8 @@ public class UIController : MonoBehaviour
     public GameObject backToMenuBtn;
     public GameObject[] lifes;
 
+    public GameObject orangeBg, yellowBg;
+
     private GameManager gm;
 
     // Start is called before the first frame update
@@ -35,5 +37,11 @@ public class UIController : MonoBehaviour
         gm.isPlaying = true;
         Debug.Log("Time Scale: " + Time.timeScale);
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ChangeBg(bool x)
+    {
+        orangeBg.SetActive(!x);
+        yellowBg.SetActive(x);
     }
 }

@@ -23,6 +23,10 @@ public class Gacha : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(gameObject.tag != "Life")
+        {
+            transform.Rotate(new Vector3(0,0,20) * Time.deltaTime);
+        }
         transform.position = Vector2.MoveTowards(transform.position, dir, speed * Time.deltaTime);
         if(transform.position.x == dir.x && transform.position.y == dir.y)
         {

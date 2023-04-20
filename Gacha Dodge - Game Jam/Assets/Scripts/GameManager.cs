@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
         isPlaying = true;
         powerUp = false;
         currentPoints = 0;
-        spawnRate = 40;
+        spawnRate = 35;
         ps = FindObjectOfType<PlayerStatus>();
         uic = FindObjectOfType<UIController>();
         boxCollider = GetComponent<BoxCollider2D>();
@@ -46,9 +46,13 @@ public class GameManager : MonoBehaviour
             currentPoints = (int)timer;
         }
 
-        if(currentPoints == 40)
+        if(currentPoints == 20)
         {
             spawnRate = 30;
+        }
+        else if (currentPoints == 40)
+        {
+            spawnRate = 25;
         }
         else if(currentPoints == 80)
         {

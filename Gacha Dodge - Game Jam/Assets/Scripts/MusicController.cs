@@ -8,6 +8,7 @@ public class MusicController : MonoBehaviour
     private static GameObject instance;
 
     public AudioSource song;
+    private AudioSource[] listsongs;
     private bool isAlreadyPlaying;
 
     private void Awake()
@@ -30,7 +31,19 @@ public class MusicController : MonoBehaviour
     {
         if(song == null)
         {
-            song = FindAnyObjectByType<AudioSource>();
+            int x = 0;
+            while (song == null)
+            {
+                listsongs = FindObjectsOfType<AudioSource>();
+                if(listsongs[x].tag == "Song")
+                {
+                    song = listsongs[x];
+                }
+                else
+                {
+                    x++;
+                }
+            }
             if (activateMusic)
             {
                 song.Play();

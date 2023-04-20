@@ -7,14 +7,18 @@ public class PlayerStatus : MonoBehaviour
     public int currentLife;
     private UIController uic;
     private GameManager gm;
+    private MusicController mc;
 
     public AudioSource hitGacha;
     public AudioSource hitLife;
+    public AudioSource inGameSong;
+    public AudioSource powerUpSong;
     // Start is called before the first frame update
     void Start()
     {
         uic = FindObjectOfType<UIController>();
         gm = FindObjectOfType<GameManager>();
+        mc = FindObjectOfType<MusicController>();
         currentLife = 3;
         Debug.Log("Current Life: " + currentLife);
     }
@@ -54,9 +58,19 @@ public class PlayerStatus : MonoBehaviour
     {
         while (gm.powerUp)
         {
-            yield return new WaitForSeconds(5f);
+            if (mc.activateMusic)
+            {
+                inGameSong.Stop();
+                powerUpSong.Play();
+            }
+            yield return new WaitForSeconds(10f);
             gm.powerUp = false;
             uic.ChangeBg(gm.powerUp);
+            if (mc.activateMusic)
+            {
+                powerUpSong.Stop();
+                inGameSong.Play();
+            }
             Debug.Log("END POWER UP");
         }
     }

@@ -13,15 +13,18 @@ public class GameManager : MonoBehaviour
 
     private PlayerStatus ps;
     private UIController uic;
+    private BoxCollider2D boxCollider;
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Confined;
         isPlaying = true;
         powerUp = false;
         currentPoints = 0;
-        spawnRate = 80;
+        spawnRate = 40;
         ps = FindObjectOfType<PlayerStatus>();
         uic = FindObjectOfType<UIController>();
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -31,6 +34,7 @@ public class GameManager : MonoBehaviour
         {
             uic.DefeatScreen();
         }
+
         if (powerUp)
         {
             timer += Time.deltaTime * 1.5f;
@@ -44,15 +48,15 @@ public class GameManager : MonoBehaviour
 
         if(currentPoints == 40)
         {
-            spawnRate = 60;
+            spawnRate = 30;
         }
         else if(currentPoints == 80)
         {
-            spawnRate = 40;
+            spawnRate = 20;
         }
-        else if(currentPoints == 120)
+        else if(currentPoints == 200)
         {
-            spawnRate = 30;
+            spawnRate = 10;
         }
 
         if (isPlaying)
@@ -64,4 +68,6 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
         }
     }
+
+    
 }

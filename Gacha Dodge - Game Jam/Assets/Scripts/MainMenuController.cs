@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class MainMenuController : MonoBehaviour
 {
     public MusicController mc;
-    public GameObject musicButton;
+    public GameObject musicButtonOn;
+    public GameObject musicButtonOff;
 
     private void Start()
     {
@@ -27,11 +28,13 @@ public class MainMenuController : MonoBehaviour
     {
         if (mc.activateMusic)
         {
-            musicButton.GetComponentInChildren<Text>().text = "MUSIC ON";
+            musicButtonOn.SetActive(true);
+            musicButtonOff.SetActive(false);
         }
         else
         {
-            musicButton.GetComponentInChildren<Text>().text = "MUSIC OFF";
+            musicButtonOn.SetActive(false);
+            musicButtonOff.SetActive(true);
         }
     }
     public void UpdateVolume()
@@ -39,12 +42,14 @@ public class MainMenuController : MonoBehaviour
         if (mc.activateMusic)
         {
             mc.activateMusic = false;
-            musicButton.GetComponentInChildren<Text>().text = "MUSIC OFF";
+            musicButtonOn.SetActive(false);
+            musicButtonOff.SetActive(true);
         }
         else
         {
             mc.activateMusic = true;
-            musicButton.GetComponentInChildren<Text>().text = "MUSIC ON";
+            musicButtonOn.SetActive(true);
+            musicButtonOff.SetActive(false);
         }
     }
 
